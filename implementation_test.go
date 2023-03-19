@@ -1,5 +1,11 @@
 package lab2
 
+func Test(t *testing.T) { TestingT(t) }
+
+type MySuite struct{}
+
+var _ = Suite(&MySuite{})
+
 import (
 	"fmt"
 	"testing"
