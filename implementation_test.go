@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	. "gopkg.in/check.v1"
 )
 
 func TestPrefixToPostfix(t *testing.T) {
