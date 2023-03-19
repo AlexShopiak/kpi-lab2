@@ -1,7 +1,9 @@
 package lab2
 
-import "fmt"
-
+import (
+	"fmt"
+	"math"
+)
 
 type Stack []string
 
@@ -13,6 +15,20 @@ func (s *Stack) Pop() (string, bool) { //element, err
 		element := (*s)[index]
 		*s = (*s)[:index]
 		return element, false
+	}
+}
+
+func evaluate(operator string, a float64, b float64) float64 {
+	if operator == "+" {
+		return a + b
+	} else if operator == "-" {
+		return a - b
+	} else if operator == "*" {
+		return a * b
+	} else if operator == "/" {
+		return a / b
+	} else  {
+		return math.Pow(a, b) // "^"
 	}
 }
 
