@@ -1,17 +1,19 @@
 package lab2
 
-func Test(t *testing.T) { TestingT(t) }
-
-type MySuite struct{}
-
-var _ = Suite(&MySuite{})
-
 import (
 	"fmt"
 	"testing"
 
 	. "gopkg.in/check.v1"
 )
+
+func Test(t *testing.T) { TestingT(t) }
+
+type MySuite struct{}
+
+var _ = Suite(&MySuite{})
+
+
 
 func (s *MySuite) TestCalculatePrefix(c *C) {
 	result, err := CalculatePrefix("+ 5 * - 4 2 3")
@@ -33,7 +35,7 @@ func (s *MySuite) TestCalculatePrefix(c *C) {
 	c.Assert(err, ErrorMatches, "Not a prefix notation order")
   }
 
-  unc ExampleCalculatePrefix() {
+  func ExampleCalculatePrefix() {
 	res, err := CalculatePrefix("+ 5 * - 4 2 3")
 	if err != nil {
 	  panic(err)
