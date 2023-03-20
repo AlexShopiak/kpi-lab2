@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 	"strings"
-	//"fmt"
+	"fmt"
 	lab2 "github.com/AlexShopiak/kpi-lab2"
 )
 
@@ -56,7 +56,7 @@ func main() {
 	err := handler.Compute()
 	
 	if err != nil {
-		println(err) 
+		fmt.Println(err) 
 	}
 
 	//res, _ := lab2.PrefixToPostfix("+ 2 2")
