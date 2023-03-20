@@ -2,7 +2,10 @@ package main
 
 import (
 	"flag"
-	"fmt"
+	"io"
+	"os"
+	"strings"
+	//"fmt"
 	lab2 "github.com/AlexShopiak/kpi-lab2"
 )
 
@@ -15,13 +18,46 @@ var (
 func main() {
 	flag.Parse()
 
-	// TODO: Change this to accept input from the command line arguments as described in the task and
-	//       output the results using the ComputeHandler instance.
-	//       handler := &lab2.ComputeHandler{
-	//           Input: {construct io.Reader according the command line parameters},
-	//           Output: {construct io.Writer according the command line parameters},
-	//       }
-	//       err := handler.Compute()
+	var input io.Reader = nil
+	var output = os.Stdout
+
+	if *inputFromStdin != "" {
+		input = strings.NewReader(*inputFromStdin)
+	}
+
+	if *inputFromFile != "" {
+		file, err := os.Open(*inputFromFile)
+		if err != nil {
+			os.Stderr.WriteString("Error with input from file")
+		}
+		defer file.Close()
+		input = file
+	}
+
+	if *outputToFile != "" {
+		file, err := os.Create(*outputToFile)
+		if err != nil {
+			os.Stderr.WriteString("Error with output to file")
+		}
+		defer file.Close()
+		output = file
+	}
+
+	if input == nil {
+		os.Stderr.WriteString("Error with input, got <nil>")
+		return
+	}
+
+	handler := &lab2.ComputeHandler{
+		Input: input,
+		Output: output,
+	}
+
+	err := handler.Compute()
+	
+	if err != nil {
+		println(err) 
+	}
 
 	//res, _ := lab2.PrefixToPostfix("+ 2 2")
 	//fmt.Println(res)
