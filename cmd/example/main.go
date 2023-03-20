@@ -29,6 +29,7 @@ func main() {
 		file, err := os.Open(*inputFromFile)
 		if err != nil {
 			os.Stderr.WriteString("Error with input from file")
+			return
 		}
 		defer file.Close()
 		input = file
@@ -38,6 +39,7 @@ func main() {
 		file, err := os.Create(*outputToFile)
 		if err != nil {
 			os.Stderr.WriteString("Error with output to file")
+			return
 		}
 		defer file.Close()
 		output = file
@@ -57,6 +59,7 @@ func main() {
 	
 	if err != nil {
 		fmt.Println(err) 
+		return
 	}
 
 	//res, _ := lab2.PrefixToPostfix("+ 2 2")
