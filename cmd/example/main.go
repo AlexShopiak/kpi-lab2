@@ -7,8 +7,9 @@ import (
 )
 
 var (
-	inputExpression = flag.String("e", "", "Expression to compute")
-	// TODO: Add other flags support for input and output configuration.
+	inputFromStdin = flag.String("e", "", "Expression from stdin")
+	inputFromFile = flag.String("f", "", "Expression from file")
+	outputToFile = flag.String("o", "", "Result to file")
 )
 
 func main() {
@@ -22,6 +23,6 @@ func main() {
 	//       }
 	//       err := handler.Compute()
 
-	res, _ := lab2.PrefixToPostfix("+ 2 2")
-	fmt.Println(res)
+	//res, _ := lab2.PrefixToPostfix("+ 2 2")
+	//fmt.Println(res)
 }
